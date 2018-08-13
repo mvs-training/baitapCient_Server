@@ -1,4 +1,4 @@
-﻿//#include"stdafx.h"
+//#include"stdafx.h"
 #include<iostream>
 #include<Winsock2.h>
 #include<stdio.h>
@@ -12,8 +12,10 @@ using namespace std;
 
 int main()
 {
-	char *a;
-	a = new char;
+	while (true)
+	{
+		char a[BUFF_SIZE];
+	//a = new char;
 	Server sv;
 	sv.OpenSocket();
 	int ret, clientAddrLen = sizeof(sv.clientAddr);
@@ -34,36 +36,48 @@ int main()
 	}
 	closesocket(sv.connSock);
 	sv.CloseSocket();
+	int leghtchar = strlen(a);
+	cout << leghtchar;
 
-	while (true)
-	{
-
-		switch (sizeof(a))
+		
+		switch (leghtchar)
 		{
 		case 1:
+			cout << "ct 1";
 			sv.OpenSocket();
-			sv.signin();
-			//	sv.CloseSocket();
+			sv.signup();
+			sv.CloseSocket();
 
 			break;
 		case 2:
+			cout << "ct 2";
 			sv.OpenSocket();
-			sv.signup();
-			//	sv.CloseSocket();
+			sv.signin();
+			
+			sv.CloseSocket();
+			//return true;
 			break;
 		case 3:
+			cout << "ct 3";
+			sv.OpenSocket();
 			sv.ShowMessdrec(sv.id);
+			sv.CloseSocket();
 			break;
 		case 4:
+			cout << "ct 4";
 			sv.ShowMesssen(sv.id);
 			break;
 		case 5:
+			cout << "ct 5";
+
 			sv.SendMess(sv.id);
 			break;
 		case 6:
+			cout << "ct 6";
 			sv.AddFriend(sv.id);
 			break;
 		case 7:
+			cout << "ct 7";
 			sv.ShowFriend(sv.id);
 			break;
 		default:
